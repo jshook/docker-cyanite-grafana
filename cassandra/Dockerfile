@@ -22,7 +22,6 @@ RUN rpm -Uvh --quiet jdk-8u45-linux-x64.rpm
 
 # Install cassandra
 RUN yum install -y --quiet dsc21 cassandra21-tools
-# cassandra=2.0.11
 
 # Expose /var/log
 VOLUME [ "/var/log" ]

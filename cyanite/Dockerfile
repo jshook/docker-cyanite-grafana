@@ -1,5 +1,6 @@
 FROM centos:centos6
-MAINTAINER Mike Brannigan <mikejbrannigan@gmail.com>
+#MAINTAINER Mike Brannigan <mikejbrannigan@gmail.com>
+MAINTAINER Jonathan Shook <jshook@gmail.com>
 
 # Update the stuff
 #RUN yum update -y --quiet
@@ -8,18 +9,18 @@ MAINTAINER Mike Brannigan <mikejbrannigan@gmail.com>
 RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Cassandra Repo
-COPY files/etc/yum.repos.d/datastax.repo /etc/yum.repos.d/datastax.repo
+COPY files/etc/yum.repos.d/datastax-community.repo /etc/yum.repos.d/datastax-community.repo
 
 # Install wget
 RUN yum install -y --quiet wget
 
 # Install JVM
 WORKDIR /tmp
-RUN wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.rpm
-RUN rpm -Uvh --quiet jdk-7u67-linux-x64.rpm
+RUN wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u45-b14/jdk-8u45-linux-x64.rpm
+RUN rpm -Uvh --quiet jdk-8u45-linux-x64.rpm
 
 # Install cassandra
-RUN yum install -y --quiet dsc20 cassandra=2.0.11
+RUN yum install -y --quiet dsc21 cassandra21-tools
 
 # Copy /opt/cyanite
 COPY files/opt/cyanite/ /opt/cyanite/
