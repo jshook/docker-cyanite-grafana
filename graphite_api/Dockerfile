@@ -1,5 +1,5 @@
 FROM centos:centos6
-MAINTAINER Mike Brannigan <mikejbrannigan@gmail.com>
+MAINTAINER Jonathan Shook <mikejbrannigan@gmail.com>
 
 # Update the stuff
 RUN yum update -y --quiet 
@@ -7,27 +7,7 @@ RUN yum update -y --quiet
 RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
 
 # Install Support Programs
-RUN yum install -y --quiet wget
-RUN yum install -y --quiet git
-RUN yum install -y --quiet tar
-
-# Install httpd
-RUN yum install -y --quiet httpd
-
-# Install mod_wsgi
-RUN yum install -y --quiet mod_wsgi
-
-# Install cairo
-RUN yum install -y --quiet cairo
-
-# Install python-pip
-RUN yum install -y --quiet python-pip
-
-# Install development tools
-RUN yum install -y --quiet gcc
-RUN yum install -y --quiet cairo-devel
-RUN yum install -y --quiet python-devel
-RUN yum install -y --quiet libffi-devel
+RUN yum install -y --quiet wget git tar httpd mod_wsgi cairo python-pip gcc cairo-devel python-devel libffi-devel
 
 # Install graphite-api and cyanite
 RUN pip install --quiet graphite-api
@@ -45,12 +25,6 @@ COPY files/etc/httpd/conf.d/graphite.conf /etc/httpd/conf.d/graphite.conf
 
 # Graphite wsgi script
 COPY files/var/www/wsgi-scripts/graphite-api.wsgi /var/www/wsgi-scripts/graphite-api.wsgi
-
-# Grafana
-ADD files/grafana-1.8.1.tar.gz /var/www
-
-# Grafana config
-COPY files/var/www/html/config.js /var/www/html/config.js
 
 # Create graphite directory
 RUN mkdir -p /srv/graphite
