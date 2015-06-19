@@ -21,22 +21,31 @@ Building The Docker Containers
 ==============================
 To build out the project, run the following
 
-    # This will run sudo for each docker command as needed
     ./build.sh
 
-Remaining docs TBD because of changes to the code --  Do not consider it correct
-================================================
+This merely executes the build.sh in each directory. These were created to capture the default docker configuration, as well as to make updating and testing Dockerfiles easier going forward. Sudo is called by default for each command. 
 
-    Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant
+If you need to troubleshoot or manage one of the individual containers, simply go into that directory to look at build.sh and run.sh.
+   
+
+
+Usage
+=====
+
+1.  Access grafana at http://localhost:3000
+2.  Login with the default grafana admin/admin credentials.
+3.  Change the admin password.
+4.  Add a data source: Type: graphite, URL: http://graphite01:8000, and make it the default
+
+If you want to test it out,
+
+1.  Write metrics via graphite at localhost:2003
+    - Run ./test.sh to generate some test metrics - 1, 5 and 15 minute load averages
+2.  Create a dashboard, a graph, and select the stats data source.
     
-    Usage
-    =====
-    The grafana dashboard is available at http://localhost
-    
-    Write metrics via graphite at localhost:2003
-    
-    Run ./test.sh to generate some test metrics - 1, 5 and 15 minute load averages
-    
+Vagrant Support
+===============
+Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant. This is untested since the significant changes after the fork.
 
 [cyanite]: https://github.com/pyr/cyanite
 [graphite-cyanite]: https://github.com/brutasse/graphite-cyanite
