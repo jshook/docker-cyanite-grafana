@@ -6,7 +6,7 @@ do
  pushd $subsystem
  printf "running  %s\n" "$subsystem"
  ./run.sh
+ printf "allowing 15 seconds for container to startup... \n" ; sleep 15
  popd
- sleep 2
 done
 printf "done\n"
