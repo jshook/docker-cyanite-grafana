@@ -10,8 +10,9 @@ RUN yum update -y --quiet
 
 ## end common
 
+
 # Install Support Programs
-RUN yum install -y --quiet wget git tar httpd mod_wsgi cairo python-pip gcc cairo-devel python-devel libffi-devel
+RUN yum install -y --quiet git tar httpd mod_wsgi cairo python-pip gcc cairo-devel python-devel libffi-devel
 
 # Install graphite-api and cyanite
 RUN pip install --quiet graphite-api
