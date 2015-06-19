@@ -10,11 +10,12 @@ This uses cyanite, developed by Pierre-Yves Ritschard and graphite-cyanite/graph
 
 Description Of The Components
 -----------------------------
-- [cyanite] - cassandra backed carbon daemon and metric web service
-- [graphite-cyanite] - A plugin for using graphite-web with the cassandra-based Cyanite storage backend
-- [graphite-api] - Graphite-web, without the interface. Just the rendering HTTP API
 - [grafana] - An open source, feature rich metrics dashboard and graph editor 
+- [graphite-api] - Graphite-web, without the interface. Just the rendering HTTP API
+- [graphite-cyanite] - A plugin for using graphite-web with the cassandra-based Cyanite storage backend
+- [cyanite] - cassandra backed carbon daemon and metric web service
 - [cassandra] - open source distributed database management system designed to handle large amounts of data across many commodity servers, providing high availability with no single point of failure. Used by cyanite to store the graphite data instead of the traditional graphite whisper files.
+
 
 Building The Docker Containers
 ==============================
@@ -23,7 +24,8 @@ To build out the project, run the following
     # This will run sudo for each docker command as needed
     ./build.sh
 
-Remaining docs TBD because of changes to the code.
+Remaining docs TBD because of changes to the code --  Do not consider it correct
+================================================
 
     Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant
     

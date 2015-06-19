@@ -1,10 +1,14 @@
-FROM centos:centos6
-MAINTAINER Jonathan Shook <mikejbrannigan@gmail.com>
+## begin common
 
-# Update the stuff
-RUN yum update -y --quiet 
-# Install EPEL
+FROM centos:centos6
+MAINTAINER Jonathan Shook <jshook@gmail.com>
+
+# EPEL
 RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN yum install -y wget
+RUN yum update -y --quiet
+
+## end common
 
 # Install Support Programs
 RUN yum install -y --quiet wget git tar httpd mod_wsgi cairo python-pip gcc cairo-devel python-devel libffi-devel
@@ -31,7 +35,7 @@ RUN mkdir -p /srv/graphite
 RUN chown apache:apache /srv/graphite
 
 # Expose ports
-EXPOSE 8000 80
+EXPOSE 8000
 
 # Run apache
 ENTRYPOINT ["/usr/sbin/httpd"]
