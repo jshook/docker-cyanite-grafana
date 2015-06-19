@@ -1,5 +1,9 @@
 Cyanite / Graphite-API / Grafana
 ================================
+
+This is a fork of github/mbrannigan/docker-cyanite-grafana. Thanks for the work!
+
+
 Sets up various containers to provide a means of storing metrics via graphite into a cassandra instance via cyanite.
 
 This uses cyanite, developed by Pierre-Yves Ritschard and graphite-cyanite/graphite-api developed by Bruno Renié
@@ -16,18 +20,21 @@ Building The Docker Containers
 ==============================
 To build out the project, run the following
 
-    sudo -s
+    # This will run sudo for each docker command as needed
     ./build.sh
 
-Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant
+Remaining docs TBD because of changes to the code.
 
-Usage
-=====
-The grafana dashboard is available at http://localhost
-
-Write metrics via graphite at localhost:2003
-
-Run ./test.sh to generate some test metrics - 1, 5 and 15 minute load averages
+    Alternatively, there is a Vagrantfile in the directory to build out the servers via vagrant
+    
+    Usage
+    =====
+    The grafana dashboard is available at http://localhost
+    
+    Write metrics via graphite at localhost:2003
+    
+    Run ./test.sh to generate some test metrics - 1, 5 and 15 minute load averages
+    
 
 [cyanite]: https://github.com/pyr/cyanite
 [graphite-cyanite]: https://github.com/brutasse/graphite-cyanite
