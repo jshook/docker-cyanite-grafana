@@ -35,7 +35,7 @@ Usage
 1.  Access grafana at http://localhost:3000
 2.  Login with the default grafana admin/admin credentials.
 3.  Change the admin password.
-4.  Add a data source: Type: graphite, URL: http://graphite01:8000, and make it the default
+4.  Add a data source: Type: graphite, URL: http://graphite01:8000/, and make it the default
 
 If you want to test it out,
 
