@@ -17,7 +17,7 @@ RUN rpm -Uvh --quiet jdk-8u45-linux-x64.rpm
 COPY files/etc/yum.repos.d/datastax-community.repo /etc/yum.repos.d/datastax-community.repo
 
 # Install cassandra
-RUN yum install -y --quiet dsc21 cassandra21-tools
+RUN yum install -y --quiet dsc21 cassandra21-tools which
 
 ## end common
 
