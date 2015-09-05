@@ -1,10 +1,12 @@
 ## begin common
 
-FROM centos:centos6
+FROM centos:centos7
 MAINTAINER Jonathan Shook <jshook@gmail.com>
 
 # EPEL
-RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
+RUN yum install -y epel-release
+#RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
+#RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/epel/epel-release-latest-7.noarch.rpm
 RUN yum install -y wget
 RUN yum update -y --quiet
 
