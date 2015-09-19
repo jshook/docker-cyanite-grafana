@@ -5,7 +5,7 @@ MAINTAINER Jonathan Shook <jshook@gmail.com>
 
 # EPEL
 RUN rpm -Uvh --quiet --force http://mirrors.kernel.org/fedora-epel/6/x86_64/epel-release-6-8.noarch.rpm
-RUN yum install -y wget
+RUN yum install -y wget util-linux
 RUN yum update -y --quiet
 
 # JVM
