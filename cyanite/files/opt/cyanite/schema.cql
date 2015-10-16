@@ -26,5 +26,5 @@ CREATE TABLE IF NOT EXISTS metric (
   default_time_to_live=0 AND
   speculative_retry='NONE' AND
   memtable_flush_period_in_ms=0 AND
-  compaction = {'min_threshold': '12', 'max_threshold': '32', 'max_sstable_age_days': '0.25', 'base_time_seconds': '50', 'class': 'DateTieredCompactionStrategy'} AND
+  compaction = {'min_threshold': '12', 'max_threshold': '32', 'max_sstable_age_days': '0.083', 'base_time_seconds': '50', 'class': 'DateTieredCompactionStrategy'} AND
   compression={'sstable_compression': 'LZ4Compressor'};
