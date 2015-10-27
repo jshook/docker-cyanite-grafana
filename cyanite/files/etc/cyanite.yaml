@@ -1,20 +1,140 @@
-carbon:
-  host: "0.0.0.0"
-  port: 2003
-  rollups:
-    - "10s:14d"
-    - "1m:32d"
-    - "5m:90d"
-    - "1h:365d"
-http:
-  host: "0.0.0.0"
+##
+## Cyanite configuration
+## =====================
+##
+## Cyanite's configuration is broken up in
+## different sections:
+##
+## - engine
+## - api
+## - input
+## - index
+## - store
+## - logging
+##
+## Most sections are optional but provide defaults
+## for a single host testing system
+##
+## Engine
+## ======
+##
+## The engine specifies the behavior of Cyanite's core
+## which accepts metrics from inputs, aggregates in-memory
+## and defers to an index and a store when a time-window
+## elapses
+##
+## The engine accepts the following options:
+##
+## *rules*:
+##   Rules specifies which resolutions to apply to an incoming metric.
+##   Rules consist of a pattern or the string "default" and an associated
+##   list of resolutions.
+##   Rules are evaluated in a first-match order. Resolutions are stored as a
+##   string of the form: <precision>:<period>, you may use unit specifiers
+##   for seconds, minutes, hours, days, weeks and months and years.
+
+engine:
+  rules:
+    default: [ "5s:1h" ]
+
+#    "web.*\\.cpu": [ "5s:1h", "30s:1d" ]
+##
+## API
+## ===
+##
+## The API specifies the behavior of the HTTP interface which is exposed.
+## The API accepts the following options:
+##
+## *host*:
+##    Address to listen on, defaults to 127.0.0.1
+## *port*:
+##    Port to bind to, defaults to 8080
+## *disabled:
+##    Disable HTTP service altogether, defaults to false.
+api:
+  host: 0.0.0.0
   port: 8080
+  disabled: false
+##
+## Input
+## ====
+##
+## Inputs are methods for Cyanite to ingest metrics. A Cyanite installation
+## may have several inputs running, and thus accepts a list of input
+## configurations.
+##
+## Each input configuration takes the following options:
+##
+## *type*:
+##   Type of input, available for now are "carbon" and "pickle"
+## *host*:
+##   Address to bind to. Valid for both "carbon" and "pickle"
+## *port*:
+##   Port to bind to. Valid for both "carbon" and "pickle"
+input:
+  - type: carbon
+    port: 2003
+    host: 0.0.0.0
+  - type: pickle
+    port: 2004
+    host: 0.0.0.0
+##
+## Index
+## =====
+##
+## The index determines where metric names will be stored.
+## Two types of indices are available now: "agent" and
+## "cassandra". If no index section is present,
+## An in-memory (agent) index will be assumed.
+##
+## The agent index takes no options.
+## The cassandra index takes the following options:
+##
+## *cluster*:
+##   A string or list of strings to provide cluster contact points.
+## *keyspace*:
+##   The keyspace to use.  
+index:
+  type: agent
+#  type: cassandra
+#  cluster: cass01
+#  keyspace: metric
+##
+## Store
+## =====
+##
+## The store is where metrics get persisted.
+## The only store available for now is the "cassandra"
+## one.
+##
+## The following options are accepted:
+##
+## *cluster*:
+##   A string or list of strings to provide cluster contact points.
+## *keyspace*:
+##   The keyspace to use.  
+queues:
+  defaults:
+    ingestq:
+      pool-size: 200
+      queue-capacity: 2000000
+    writeq:
+      pool-size: 200
+      queue-capacity: 2000000
+
+store:
+  cluster: 'cass01'
+  keyspace: 'metric'
+##
+## Logging
+## =======
+##
+## Specify where to log. Adheres to the configuration format
+## defined at https://github.com/pyr/unilog
 logging:
-  level: info
+  level: debug
   console: true
   files:
-    - "/var/log/cyanite.log"
-store:
-  cluster:
-    - "cass01"
-  keyspace: 'metric'
+    - "/var/log/cyanite/cyanite.log"
+  overrides:
+    io.cyanite: "debug"

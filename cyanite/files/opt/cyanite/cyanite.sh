@@ -6,7 +6,7 @@ fi
 
 cat /opt/cyanite/schema.cql | cqlsh cass01
 
-CYANITE_VERSION="0.1.3"
+CYANITE_VERSION="0.5.1"
 
 JAR="$EXTRA_CLASSPATH:/opt/cyanite/cyanite-${CYANITE_VERSION}-standalone.jar"
 CONFIG="/etc/cyanite.yaml"
