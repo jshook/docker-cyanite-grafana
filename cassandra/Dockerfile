@@ -10,8 +10,9 @@ RUN yum update -y --quiet
 
 # JVM
 WORKDIR /tmp
-RUN wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u60-b27/jdk-8u60-linux-x64.rpm
-RUN rpm -Uvh --quiet jdk-8u60-linux-x64.rpm
+
+RUN wget --quiet --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u65-b17/jdk-8u65-linux-x64.rpm
+RUN rpm -Uvh --quiet jdk-8u66-linux-x64.rpm
 
 # Cassandra Repo
 COPY files/etc/yum.repos.d/datastax-community.repo /etc/yum.repos.d/datastax-community.repo
